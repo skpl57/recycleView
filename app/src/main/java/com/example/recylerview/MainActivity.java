@@ -1,6 +1,10 @@
 package com.example.recylerview;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Produkt> produkty;
+    private ArrayList<Produkt> produkty = new ArrayList<>();
     private RecyclerView recyclerView;
     private ZakupyAdapter zakupyAdapter;
 
@@ -28,17 +32,37 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Button dodaj = findViewById(R.id.dodajBtn);
+        EditText nazwaInp = findViewById(R.id.nazwaInput);
+        EditText cenaInp = findViewById(R.id.cenaInput);
 
         produkty.add(new Produkt("masło", 5));
         produkty.add(new Produkt("czekolada", 3));
         produkty.add(new Produkt("mleko", 2));
         produkty.add(new Produkt("jogurt", 7));
-        produkty.add(new Produkt("w pysk", 1));
+
 
         recyclerView = findViewById(R.id.recyclerView);
         zakupyAdapter = new ZakupyAdapter(MainActivity.this, produkty);
 
         recyclerView.setAdapter(zakupyAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        dodaj.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        produkty.add(new Produkt(nazwaInp.getText().toString(), Integer.parseInt(cenaInp.getText().toString())));
+                        nazwaInp.setText("");
+                        cenaInp.setText("");
+
+//                        zakupyAdapter.notifyDataSetChanged();
+                        Toast.makeText(MainActivity.this, produkty.get(0).toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
     }
 }

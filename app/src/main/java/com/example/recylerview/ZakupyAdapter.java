@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,14 +40,22 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
         return produkty.size();
     }
 
-    public class ProduktViewHolder extends RecyclerView.ViewHolder{
+    public class ProduktViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public CheckBox checkBoxView;
-        public ZakupyAdapter zakupyAdapter; // final????
+        ZakupyAdapter zakupyAdapter; // final????
 
         public ProduktViewHolder(@NonNull View itemView, ZakupyAdapter adapter) {
             super(itemView);
             checkBoxView = itemView.findViewById(R.id.checkBox);
             zakupyAdapter = adapter;
+        }
+
+        @Override
+        public void onClick(View view) {
+            int ktoryProdukt = getLayoutPosition();
+            produkty.get(ktoryProdukt).setCzyKupione(true);
+
+            zakupyAdapter.notifyDataSetChanged();
         }
     }
 }
