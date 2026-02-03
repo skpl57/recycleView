@@ -16,6 +16,7 @@
         android:text="Lista zakupów" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -32,20 +33,20 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/nazwaInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:hint="Nazwa" />
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/cenaInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Name" />
+                android:inputType="number"
+                android:hint="Cena" />
         </LinearLayout>
 
         <Button
