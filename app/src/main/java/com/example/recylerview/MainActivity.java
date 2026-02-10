@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Produkt> produkty = new ArrayList<>();
     private RecyclerView recyclerView;
     private ZakupyAdapter zakupyAdapter;
+    private Button usun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(zakupyAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        usun = findViewById(R.id.usunBtn);
 
+        usun.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        zakupyAdapter.usunZaznaczone();
+                    }
+                }
+        );
 
         dodaj.setOnClickListener(
                 new View.OnClickListener() {
